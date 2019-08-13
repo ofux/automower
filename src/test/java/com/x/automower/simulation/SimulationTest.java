@@ -40,6 +40,17 @@ class SimulationTest {
     }
 
     @Test
+    void simulateOneMowerWithoutNavigationInstruction() {
+        var mowers = asList(
+                new Mower(new Transform(new Vector2D(2, 2), Orientation.NORTH), asList())
+        );
+        var scene = new Simulation(new Vector2D(10, 10), mowers, mowerRenderer);
+        scene.simulate();
+
+        Assertions.assertThat(mowers.get(0).getTransform()).isEqualTo(new Transform(new Vector2D(2, 2), Orientation.NORTH));
+    }
+
+    @Test
     void simulateOneMowerOnASingleCellLawn() {
         var mowers = asList(
                 new Mower(new Transform(new Vector2D(0, 0), Orientation.EAST), asList(

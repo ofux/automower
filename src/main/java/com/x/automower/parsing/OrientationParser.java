@@ -11,7 +11,7 @@ public class OrientationParser implements Parser<Orientation> {
     public Orientation deserialize(String s) throws ParsingException {
         var orientation = fromCode(s);
         if (orientation.isEmpty()) {
-            throw new ParsingException(s, getClass());
+            throw new ParsingException(s, Orientation.class);
         }
 
         return orientation.get();

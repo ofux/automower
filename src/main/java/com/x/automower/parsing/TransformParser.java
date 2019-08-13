@@ -23,7 +23,7 @@ public class TransformParser implements Parser<Transform> {
     public Transform deserialize(String s) throws ParsingException {
         var matcher = pattern.matcher(s);
         if (!matcher.matches()) {
-            throw new ParsingException(s, getClass());
+            throw new ParsingException(s, Transform.class);
         }
 
         return new Transform(vector2DParser.deserialize(matcher.group(1)), orientationParser.deserialize(matcher.group(2)));

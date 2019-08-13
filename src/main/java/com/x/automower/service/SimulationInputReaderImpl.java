@@ -10,14 +10,14 @@ import com.x.automower.simulation.navigation.NavigationInstruction;
 
 import javax.inject.Inject;
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class FileSimulationInitializer implements SimulationInitializer {
+public class SimulationInputReaderImpl implements SimulationInputReader {
 
     private final Vector2DParser vector2DParser;
     private final TransformParser transformParser;
@@ -25,7 +25,7 @@ public class FileSimulationInitializer implements SimulationInitializer {
     private final MowerRenderer mowerRenderer;
 
     @Inject
-    public FileSimulationInitializer(Vector2DParser vector2DParser, TransformParser transformParser, NavigationInstructionParser navigationInstructionParser, MowerRenderer mowerRenderer) {
+    public SimulationInputReaderImpl(Vector2DParser vector2DParser, TransformParser transformParser, NavigationInstructionParser navigationInstructionParser, MowerRenderer mowerRenderer) {
         this.vector2DParser = vector2DParser;
         this.transformParser = transformParser;
         this.navigationInstructionParser = navigationInstructionParser;
@@ -33,21 +33,15 @@ public class FileSimulationInitializer implements SimulationInitializer {
     }
 
     @Override
-    public Simulation initialize(String[] args) {
-        if (args.length < 1) {
-            throw new IllegalArgumentException("Expecting valid file name as first argument");
-        }
-
-        try (var fileInputStream = new FileInputStream(args[0])) {
-            try (var br = new BufferedReader(new InputStreamReader(fileInputStream))) {
-                return readFile(br);
-            }
+    public Simulation read(InputStream inputStream) {
+        try (var br = new BufferedReader(new InputStreamReader(inputStream))) {
+            return readBuffered(br);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private Simulation readFile(BufferedReader br) throws IOException, ParsingException {
+    private Simulation readBuffered(BufferedReader br) throws IOException, ParsingException {
         String line = br.readLine();
         var lawnSize = vector2DParser.deserialize(line);
 

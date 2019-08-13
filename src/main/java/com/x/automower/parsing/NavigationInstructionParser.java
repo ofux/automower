@@ -12,7 +12,7 @@ public class NavigationInstructionParser implements Parser<NavigationInstruction
     public NavigationInstruction deserialize(String s) throws ParsingException {
         var instruction = fromCode(s);
         if (instruction.isEmpty()) {
-            throw new ParsingException(s, getClass());
+            throw new ParsingException(s, NavigationInstruction.class);
         }
 
         return instruction.get();
