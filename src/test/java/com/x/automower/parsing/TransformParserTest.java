@@ -14,7 +14,7 @@ class TransformParserTest {
 
     @BeforeEach
     void setUp() {
-        parser = new TransformParser();
+        parser = new TransformParser(new Vector2DParser(), new OrientationParser());
     }
 
     @Test

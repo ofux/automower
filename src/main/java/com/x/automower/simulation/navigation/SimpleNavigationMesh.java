@@ -14,11 +14,14 @@ public class SimpleNavigationMesh implements NavigationMesh {
     public SimpleNavigationMesh(Vector2D minPosition, Vector2D maxPosition, List<Mower> mowers) {
         this.minPosition = minPosition;
         this.maxPosition = maxPosition;
+        if (minPosition.getX() > maxPosition.getX() || minPosition.getY() > maxPosition.getY()) {
+            throw new IllegalArgumentException("Lawn size must be greater than 0");
+        }
+
         this.obstacles = new HashSet<>();
         for (var mower : mowers) {
-            if (obstacles.contains(mower.getPosition())) {
-                // I assume that there can't be more than one mower at a given position
-                throw new IllegalStateException("At least two mowers are at the same position");
+            if (!isNavigable(mower.getPosition())) {
+                throw new IllegalStateException("Mower is outside of lawn or there is another mower at the same position");
             }
             obstacles.add(mower.getPosition());
         }
@@ -28,6 +31,7 @@ public class SimpleNavigationMesh implements NavigationMesh {
     public boolean isNavigable(Vector2D position) {
         return position.getX() >= minPosition.getX() && position.getX() <= maxPosition.getX() &&
                 position.getY() >= minPosition.getY() && position.getY() <= maxPosition.getY() &&
+                // I assume that there can't be more than one mower at a given position
                 !obstacles.contains(position);
     }
 

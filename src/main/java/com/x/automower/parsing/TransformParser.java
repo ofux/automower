@@ -2,6 +2,7 @@ package com.x.automower.parsing;
 
 import com.x.automower.simulation.math.Transform;
 
+import javax.inject.Inject;
 import java.util.regex.Pattern;
 
 import static java.util.regex.Pattern.compile;
@@ -12,9 +13,10 @@ public class TransformParser implements Parser<Transform> {
     private final Vector2DParser vector2DParser;
     private final OrientationParser orientationParser;
 
-    public TransformParser() {
-        vector2DParser = new Vector2DParser();
-        orientationParser = new OrientationParser();
+    @Inject
+    public TransformParser(Vector2DParser vector2DParser, OrientationParser orientationParser) {
+        this.vector2DParser = vector2DParser;
+        this.orientationParser = orientationParser;
     }
 
     @Override
