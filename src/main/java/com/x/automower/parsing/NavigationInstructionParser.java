@@ -1,9 +1,9 @@
 package com.x.automower.parsing;
 
-import com.x.automower.simulation.navigation.MoveForwardAction;
+import com.x.automower.simulation.navigation.MoveForwardInstruction;
 import com.x.automower.simulation.navigation.NavigationInstruction;
-import com.x.automower.simulation.navigation.TurnLeftAction;
-import com.x.automower.simulation.navigation.TurnRightAction;
+import com.x.automower.simulation.navigation.TurnLeftInstruction;
+import com.x.automower.simulation.navigation.TurnRightInstruction;
 
 import java.util.Optional;
 
@@ -21,11 +21,11 @@ public class NavigationInstructionParser implements Parser<NavigationInstruction
     private Optional<NavigationInstruction> fromCode(String code) {
         switch (code) {
             case "F":
-                return Optional.of(new MoveForwardAction());
+                return Optional.of(new MoveForwardInstruction());
             case "L":
-                return Optional.of(new TurnLeftAction());
+                return Optional.of(new TurnLeftInstruction());
             case "R":
-                return Optional.of(new TurnRightAction());
+                return Optional.of(new TurnRightInstruction());
             default:
                 return Optional.empty();
         }

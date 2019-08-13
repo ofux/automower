@@ -8,18 +8,18 @@ import org.junit.jupiter.api.Test;
 
 import static com.x.automower.simulation.navigation.NavMeshUtils.createSimpleNavMesh;
 
-class TurnRightActionTest {
+class TurnLeftInstructionTest {
 
     @Test
     void apply() {
         // Arrange
-        var action = new TurnRightAction();
+        var instruction = new TurnLeftInstruction();
         var navMesh = createSimpleNavMesh();
 
         // Act
-        var result = action.apply(navMesh, new Transform(new Vector2D(0, 0), Orientation.NORTH));
+        var result = instruction.apply(navMesh, new Transform(new Vector2D(0, 0), Orientation.NORTH));
 
         // Assert
-        Assertions.assertThat(result).isEqualTo(new Transform(new Vector2D(0, 0), Orientation.EAST));
+        Assertions.assertThat(result).isEqualTo(new Transform(new Vector2D(0, 0), Orientation.WEST));
     }
 }

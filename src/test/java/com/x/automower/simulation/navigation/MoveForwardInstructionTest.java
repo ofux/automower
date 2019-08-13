@@ -8,16 +8,16 @@ import org.junit.jupiter.api.Test;
 import static com.x.automower.simulation.navigation.NavMeshUtils.createSimpleNavMesh;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class MoveForwardActionTest {
+class MoveForwardInstructionTest {
 
     @Test
     void applyToNorth() {
         // Arrange
-        var action = new MoveForwardAction();
+        var instruction = new MoveForwardInstruction();
         var navMesh = createSimpleNavMesh();
 
         // Act
-        var result = action.apply(navMesh, new Transform(new Vector2D(0, 0), Orientation.NORTH));
+        var result = instruction.apply(navMesh, new Transform(new Vector2D(0, 0), Orientation.NORTH));
 
         // Assert
         assertThat(result).isEqualTo(new Transform(new Vector2D(0, 1), Orientation.NORTH));
@@ -27,11 +27,11 @@ class MoveForwardActionTest {
     @Test
     void applyToEast() {
         // Arrange
-        var action = new MoveForwardAction();
+        var instruction = new MoveForwardInstruction();
         var navMesh = createSimpleNavMesh();
 
         // Act
-        var result = action.apply(navMesh, new Transform(new Vector2D(3, 3), Orientation.EAST));
+        var result = instruction.apply(navMesh, new Transform(new Vector2D(3, 3), Orientation.EAST));
 
         // Assert
         assertThat(result).isEqualTo(new Transform(new Vector2D(4, 3), Orientation.EAST));
@@ -41,11 +41,11 @@ class MoveForwardActionTest {
     @Test
     void applyToSouth() {
         // Arrange
-        var action = new MoveForwardAction();
+        var instruction = new MoveForwardInstruction();
         var navMesh = createSimpleNavMesh();
 
         // Act
-        var result = action.apply(navMesh, new Transform(new Vector2D(0, 4), Orientation.SOUTH));
+        var result = instruction.apply(navMesh, new Transform(new Vector2D(0, 4), Orientation.SOUTH));
 
         // Assert
         assertThat(result).isEqualTo(new Transform(new Vector2D(0, 3), Orientation.SOUTH));
@@ -55,11 +55,11 @@ class MoveForwardActionTest {
     @Test
     void applyToWest() {
         // Arrange
-        var action = new MoveForwardAction();
+        var instruction = new MoveForwardInstruction();
         var navMesh = createSimpleNavMesh();
 
         // Act
-        var result = action.apply(navMesh, new Transform(new Vector2D(3, 1), Orientation.WEST));
+        var result = instruction.apply(navMesh, new Transform(new Vector2D(3, 1), Orientation.WEST));
 
         // Assert
         assertThat(result).isEqualTo(new Transform(new Vector2D(2, 1), Orientation.WEST));
@@ -69,11 +69,11 @@ class MoveForwardActionTest {
     @Test
     void applyNotNavigable() {
         // Arrange
-        var action = new MoveForwardAction();
+        var instruction = new MoveForwardInstruction();
         var navMesh = createSimpleNavMesh();
 
         // Act
-        var result = action.apply(navMesh, new Transform(new Vector2D(2, 0), Orientation.SOUTH));
+        var result = instruction.apply(navMesh, new Transform(new Vector2D(2, 0), Orientation.SOUTH));
 
         // Assert
         assertThat(result).isEqualTo(new Transform(new Vector2D(2, 0), Orientation.SOUTH));

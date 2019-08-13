@@ -2,7 +2,7 @@ package com.x.automower.simulation.navigation;
 
 import com.x.automower.simulation.math.Transform;
 
-public class MoveForwardAction implements NavigationInstruction {
+public class MoveForwardInstruction implements NavigationInstruction {
     @Override
     public Transform apply(NavigationMesh navigationMesh, Transform transform) {
         var nextPosition = transform.getOrientation().getForwardPosition(transform.getPosition());

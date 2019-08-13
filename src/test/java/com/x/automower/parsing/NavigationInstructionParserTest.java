@@ -1,8 +1,8 @@
 package com.x.automower.parsing;
 
-import com.x.automower.simulation.navigation.MoveForwardAction;
-import com.x.automower.simulation.navigation.TurnLeftAction;
-import com.x.automower.simulation.navigation.TurnRightAction;
+import com.x.automower.simulation.navigation.MoveForwardInstruction;
+import com.x.automower.simulation.navigation.TurnLeftInstruction;
+import com.x.automower.simulation.navigation.TurnRightInstruction;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +27,7 @@ class NavigationInstructionParserTest {
             var instruction = parser.deserialize(input);
 
             // Assert
-            assertThat(instruction).isInstanceOf(MoveForwardAction.class);
+            assertThat(instruction).isInstanceOf(MoveForwardInstruction.class);
         }).doesNotThrowAnyException();
     }
 
@@ -41,7 +41,7 @@ class NavigationInstructionParserTest {
             var instruction = parser.deserialize(input);
 
             // Assert
-            assertThat(instruction).isInstanceOf(TurnLeftAction.class);
+            assertThat(instruction).isInstanceOf(TurnLeftInstruction.class);
         }).doesNotThrowAnyException();
     }
 
@@ -55,7 +55,7 @@ class NavigationInstructionParserTest {
             var instruction = parser.deserialize(input);
 
             // Assert
-            assertThat(instruction).isInstanceOf(TurnRightAction.class);
+            assertThat(instruction).isInstanceOf(TurnRightInstruction.class);
         }).doesNotThrowAnyException();
     }
 
@@ -77,7 +77,7 @@ class NavigationInstructionParserTest {
     @Test
     void serializeForward() {
         // Arrange
-        var instruction = new MoveForwardAction();
+        var instruction = new MoveForwardInstruction();
 
         // Act
         var output = parser.serialize(instruction);
@@ -89,7 +89,7 @@ class NavigationInstructionParserTest {
     @Test
     void serializeLeft() {
         // Arrange
-        var instruction = new TurnLeftAction();
+        var instruction = new TurnLeftInstruction();
 
         // Act
         var output = parser.serialize(instruction);
@@ -101,7 +101,7 @@ class NavigationInstructionParserTest {
     @Test
     void serializeRight() {
         // Arrange
-        var instruction = new TurnRightAction();
+        var instruction = new TurnRightInstruction();
 
         // Act
         var output = parser.serialize(instruction);
