@@ -13,4 +13,9 @@ public class MoveForwardAction implements NavigationInstruction {
         }
         return transform;
     }
+
+    @Override
+    public String getCode() {
+        return "F";
+    }
 }

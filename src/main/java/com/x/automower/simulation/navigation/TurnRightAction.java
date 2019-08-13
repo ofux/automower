@@ -7,4 +7,9 @@ public class TurnRightAction implements NavigationInstruction {
     public Transform apply(NavigationMesh navigationMesh, Transform transform) {
         return transform.withOrientation(transform.getOrientation().turnRight());
     }
+
+    @Override
+    public String getCode() {
+        return "R";
+    }
 }

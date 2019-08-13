@@ -17,6 +17,7 @@ public class SimpleNavigationMesh implements NavigationMesh {
         this.obstacles = new HashSet<>();
         for (var mower : mowers) {
             if (obstacles.contains(mower.getPosition())) {
+                // I assume that there can't be more than one mower at a given position
                 throw new IllegalStateException("At least two mowers are at the same position");
             }
             obstacles.add(mower.getPosition());
