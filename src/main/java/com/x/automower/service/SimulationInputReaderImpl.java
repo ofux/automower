@@ -1,11 +1,11 @@
 package com.x.automower.service;
 
-import com.x.automower.parsing.NavigationInstructionParser;
+import com.x.automower.parsing.Parser;
 import com.x.automower.parsing.ParsingException;
-import com.x.automower.parsing.TransformParser;
-import com.x.automower.parsing.Vector2DParser;
 import com.x.automower.simulation.Mower;
 import com.x.automower.simulation.Simulation;
+import com.x.automower.simulation.math.Transform;
+import com.x.automower.simulation.math.Vector2D;
 import com.x.automower.simulation.navigation.NavigationInstruction;
 
 import javax.inject.Inject;
@@ -19,13 +19,13 @@ import java.util.stream.Collectors;
 
 public class SimulationInputReaderImpl implements SimulationInputReader {
 
-    private final Vector2DParser vector2DParser;
-    private final TransformParser transformParser;
-    private final NavigationInstructionParser navigationInstructionParser;
+    private final Parser<Vector2D> vector2DParser;
+    private final Parser<Transform> transformParser;
+    private final Parser<NavigationInstruction> navigationInstructionParser;
     private final MowerRenderer mowerRenderer;
 
     @Inject
-    public SimulationInputReaderImpl(Vector2DParser vector2DParser, TransformParser transformParser, NavigationInstructionParser navigationInstructionParser, MowerRenderer mowerRenderer) {
+    public SimulationInputReaderImpl(Parser<Vector2D> vector2DParser, Parser<Transform> transformParser, Parser<NavigationInstruction> navigationInstructionParser, MowerRenderer mowerRenderer) {
         this.vector2DParser = vector2DParser;
         this.transformParser = transformParser;
         this.navigationInstructionParser = navigationInstructionParser;

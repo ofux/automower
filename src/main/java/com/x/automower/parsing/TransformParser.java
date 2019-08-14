@@ -1,6 +1,8 @@
 package com.x.automower.parsing;
 
+import com.x.automower.simulation.math.Orientation;
 import com.x.automower.simulation.math.Transform;
+import com.x.automower.simulation.math.Vector2D;
 
 import javax.inject.Inject;
 import java.util.regex.Pattern;
@@ -10,11 +12,11 @@ import static java.util.regex.Pattern.compile;
 public class TransformParser implements Parser<Transform> {
 
     private final Pattern pattern = compile("^(\\d+ \\d+) ([NEWS])$");
-    private final Vector2DParser vector2DParser;
-    private final OrientationParser orientationParser;
+    private final Parser<Vector2D> vector2DParser;
+    private final Parser<Orientation> orientationParser;
 
     @Inject
-    public TransformParser(Vector2DParser vector2DParser, OrientationParser orientationParser) {
+    public TransformParser(Parser<Vector2D> vector2DParser, Parser<Orientation> orientationParser) {
         this.vector2DParser = vector2DParser;
         this.orientationParser = orientationParser;
     }

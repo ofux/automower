@@ -1,16 +1,17 @@
 package com.x.automower.service;
 
-import com.x.automower.parsing.TransformParser;
+import com.x.automower.parsing.Parser;
 import com.x.automower.simulation.Mower;
+import com.x.automower.simulation.math.Transform;
 
 import javax.inject.Inject;
 
 public class ConsoleMowerRenderer implements MowerRenderer {
 
-    private final TransformParser transformParser;
+    private final Parser<Transform> transformParser;
 
     @Inject
-    public ConsoleMowerRenderer(TransformParser transformParser) {
+    public ConsoleMowerRenderer(Parser<Transform> transformParser) {
         this.transformParser = transformParser;
     }
 
